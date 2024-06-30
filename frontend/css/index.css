@@ -1,0 +1,38 @@
+:root {
+    --color1: #cbdad5;
+    --color2: #89a7b1;
+    --color3: #566981;
+    --color4: #3a415a;
+    --color5: #34344e;
+}
+
+body {
+    background-color: var(--color1);
+    font-family: Arial, sans-serif;
+}
+
+.logo {
+    max-height: 50px;
+}
+
+.img-referencia {
+    max-width: 100%;
+    height: 500px;
+}
+
+#spinner-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 9999; 
+}
+
+#spinner-container.hidden {
+    display: none;
+}
