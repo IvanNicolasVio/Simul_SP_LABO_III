@@ -36,3 +36,26 @@ body {
 #spinner-container.hidden {
     display: none;
 }
+
+
+#form_muestra {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.checkbox-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.checkbox-group label {
+    margin-left: 5px;
+}

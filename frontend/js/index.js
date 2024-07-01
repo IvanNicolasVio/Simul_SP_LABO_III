@@ -2,6 +2,7 @@ import { ValidadorNumero,darDia,crearSpinner,borrarSpinner } from "./funciones.j
 import {TraerTabla,CrearUna,EditarPorId,EliminarPorId,EliminarTodo } from "./clases/ControllerCrypto.js";
 const formulario = document.getElementById("tabla_carga");
 const form_muestra = document.getElementById("form_muestra");
+const checkbox_container = document.getElementById("checkbox-container");
 const btnGuardar = document.getElementById("btn");
 const btnModificar = document.getElementById("btnModificar");
 const btnEliminar = document.getElementById("btnEliminar");
@@ -96,7 +97,6 @@ async function crearTabla() {
         const listaCrypto = await TraerTabla();
         alternarForm(listaCrypto);
         if (listaCrypto.length === 0) return;
-
         const keys = Object.keys(listaCrypto[0]);
         keys.forEach(key => {
             const th = document.createElement("th");
@@ -115,11 +115,35 @@ async function crearTabla() {
                 cargarFormulario(crypto);
             });
         });
+        keys.forEach((key, index) => {
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = `checkbox-${key}`;
+            checkbox.checked = true;
+            checkbox.addEventListener("change", () => ocultarColumna(index, checkbox.checked));
+            const label = document.createElement("label");
+            label.htmlFor = `checkbox-${key}`;
+            label.textContent = key.charAt(0).toUpperCase() + key.slice(1);
+            const formGroup = document.createElement("div");
+            formGroup.classList.add("form-group");
+            formGroup.appendChild(checkbox);
+            formGroup.appendChild(label);
+            checkbox_container.appendChild(formGroup);
+        });
     } catch (error) {
         console.error('Error al traer los datos de la tabla:', error);
     } finally {
         borrarSpinner();
     }
+}
+function ocultarColumna(index, show) {
+    const rows = document.querySelectorAll("#tabla_crypto tr");
+    rows.forEach(row => {
+        const cells = row.querySelectorAll("th, td");
+        if (cells[index]) {
+            cells[index].style.display = show ? "" : "none";
+        }
+    });
 }
 
 function crearCrypto(){
