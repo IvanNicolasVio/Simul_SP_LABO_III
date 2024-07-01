@@ -136,6 +136,7 @@ async function crearTabla() {
         borrarSpinner();
     }
 }
+
 function ocultarColumna(index, show) {
     const rows = document.querySelectorAll("#tabla_crypto tr");
     rows.forEach(row => {
